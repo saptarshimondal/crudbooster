@@ -23,7 +23,7 @@
         {
             "name": "Saptarshi Mondal",
             "email": "mondalsaptarshi7@gmail.com"
-        },
+        }
     ],
     "minimum-stability": "dev",
     "require": {
