@@ -25,7 +25,11 @@ class DeveloperModulesController extends Controller
 
     public function __construct()
     {
-        view()->share(['page_title'=>'Module Manager']);
+        $reflection = new \ReflectionClass(\crocodicstudio\crudbooster\CRUDBoosterServiceProvider::class);
+        view()->share([
+            'page_title'=>'Module Manager',
+            'dirPath'=>dirname($reflection->getFileName())."/types"
+        ]);
     }
 
 

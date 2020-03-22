@@ -187,7 +187,6 @@
                                 </tr>
                             </thead>
                             <?php
-                            $dirPath = base_path("vendor/crocodicstudio/crudbooster/src/types");
                             $types = scandir($dirPath);
                             ?>
                             <tbody>

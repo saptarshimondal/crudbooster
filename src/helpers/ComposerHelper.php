@@ -30,7 +30,7 @@ class ComposerHelper
     public static function dumpAutoLoad()
     {
         $composer = self::findComposer();
-        $process = new Process($composer.' dump-autoload');
+        $process = new Process([$composer, 'dump-autoload']);
         $process->setTimeout(0);
         $process->setWorkingDirectory(base_path())->run();
     }
