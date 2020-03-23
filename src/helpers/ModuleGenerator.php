@@ -156,6 +156,7 @@ class ModuleGenerator
         $menu = [];
         $menu['name'] = $module['name'];
         $menu['type'] = 'module';
+        $menu['icon'] = $module['icon'];
         $menu['cb_modules_id'] = $id_modules;
         if(isset($moduleData)) {
             DB::table("cb_menus")->where("cb_modules_id",$moduleData->id)->update($menu);
