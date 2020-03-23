@@ -11,6 +11,7 @@ namespace crocodicstudio\crudbooster\controllers;
 use crocodicstudio\crudbooster\exceptions\CBValidationException;
 use crocodicstudio\crudbooster\helpers\ComposerHelper;
 use crocodicstudio\crudbooster\helpers\ModuleGenerator;
+use crocodicstudio\crudbooster\helpers\CacheHelper;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -274,6 +275,7 @@ class DeveloperModulesController extends Controller
         @unlink(app_path("Http/Controllers/".$module->controller.".php"));
         DB::table("cb_modules")->where("id", $id)->delete();
         DB::table("cb_menus")->where("cb_modules_id", $id)->delete();
+        CacheHelper::forgetGroup("sidebar_menu");
         return cb()->redirectBack("The module has been deleted!","success");
     }
 
