@@ -28,6 +28,11 @@ class CBController extends Controller
         $this->defaultData();
         $this->cbInit();
         $this->columnIntervention();
+
+        $reflection = new \ReflectionClass(\crocodicstudio\crudbooster\CRUDBoosterServiceProvider::class);
+        $data['dirPath'] = dirname($reflection->getFileName());
+
+        view()->share($data);
     }
 
     public function getIndex()

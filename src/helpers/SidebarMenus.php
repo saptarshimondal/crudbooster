@@ -29,8 +29,8 @@ class SidebarMenus
             /** @var CBController $controllerClass */
             $model->setUrl(cb()->getAdminUrl($controllerClass->getData("permalink")));
             $model->setPermalink($controllerClass->getData("permalink"));
-            $model->setIcon($module->icon);
-            $model->setName($module->name);
+            $model->setIcon($menu->icon);
+            $model->setName($menu->name);
             $model->setBasepath(config('crudbooster.ADMIN_PATH').'/'.basename($model->getUrl()));
         }elseif ($menu->type == "path") {
             $model->setUrl(cb()->getAdminUrl($menu->path));

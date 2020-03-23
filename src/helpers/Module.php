@@ -79,7 +79,7 @@ class Module
 
     public function getPageIcon()
     {
-        return ($this->controller_class)?$this->controller_class->getData('page_icon')?:"fa fa-bars":null;
+        return ($this->controller_class)?$this->controller_class->getData('page_icon')?:$this->module->icon:null;
     }
 
     public function canBrowse() {
