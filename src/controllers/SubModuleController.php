@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Cache;
 trait SubModuleController
 {
 
-    public function getSubModule($subModuleKey) {
+    public function getSubModule() {
+        $subModuleKey = request('subModuleKey');
         if(!module()->canBrowse()) return cb()->redirect(cb()->getAdminUrl(),cbLang("you_dont_have_privilege_to_this_area"));
         if(!verifyReferalUrl()) return cb()->redirect(module()->url(),"It looks like your url is incorrect");
 
