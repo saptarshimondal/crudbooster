@@ -19,8 +19,25 @@ trait Validation
      */
     private function validation()
     {
-        if(isset($this->data['validation'])) {
-            $validator = Validator::make(request()->all(), @$this->data['validation'], @$this->data['validation_messages']);
+        $columns = columnSingleton()->getColumns();
+
+        $validation = [];
+        $messages = [];
+
+        foreach ($columns as $key => $value) {
+            if(columnSingleton()->getColumn($key)->getValidation()){
+                $validation[columnSingleton()->getColumn($key)->getName()] = columnSingleton()->getColumn($key)->getValidation();
+            }
+
+            if(is_array(columnSingleton()->getColumn($key)->getValidationMessages())){
+                foreach (columnSingleton()->getColumn($key)->getValidationMessages() as $rule => $message) {
+                    $messages[columnSingleton()->getColumn($key)->getName().".".$rule] = $message;
+                }
+            }
+        }
+
+        if(count($validation)) {
+            $validator = Validator::make(request()->all(), $validation, $messages);
             if ($validator->fails()) {
                 $message = $validator->messages();
                 $message_all = $message->all();
