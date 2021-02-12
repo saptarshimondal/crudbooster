@@ -6,7 +6,7 @@
  * Time: 6:00 PM
  */
 
-namespace crocodicstudio\crudbooster\types;
+namespace crocodicstudio\crudbooster\types\checkbox;
 
 use Crocodicstudio\Cbmodel\Core\Model;
 use crocodicstudio\crudbooster\controllers\scaffolding\traits\DefaultOption;

@@ -6,7 +6,7 @@
  * Time: 10:51 PM
  */
 
-namespace crocodicstudio\crudbooster\types\image;
+namespace crocodicstudio\crudbooster\types\hidden;
 
 use crocodicstudio\crudbooster\models\ColumnModel;
 

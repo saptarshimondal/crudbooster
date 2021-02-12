@@ -6,7 +6,7 @@
  * Time: 6:00 PM
  */
 
-namespace crocodicstudio\crudbooster\types;
+namespace crocodicstudio\crudbooster\types\select_option;
 
 use crocodicstudio\crudbooster\controllers\scaffolding\traits\DefaultOption;
 use crocodicstudio\crudbooster\controllers\scaffolding\traits\Join;
