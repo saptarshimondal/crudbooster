@@ -130,7 +130,7 @@ class Module
     public function addURL()
     {
         if($this->controller_class && method_exists($this->controller_class, 'getAdd')) {
-            return action($this->controller.'@getAdd');
+            return action('\\App\\Http\\Controllers\\'.$this->controller.'@getAdd');
         }else{
             return null;
         }
@@ -139,7 +139,7 @@ class Module
     public function addSaveURL()
     {
         if($this->controller_class && method_exists($this->controller_class, 'postAddSave')) {
-            return action($this->controller.'@postAddSave');
+            return action('\\App\\Http\\Controllers\\'.$this->controller.'@postAddSave');
         }else{
             return null;
         }
@@ -148,7 +148,7 @@ class Module
     public function editURL($id = null)
     {
         if($this->controller_class && method_exists($this->controller_class, 'getEdit')) {
-            return action($this->controller.'@getEdit')."/".$id;
+            return action('\\App\\Http\\Controllers\\'.$this->controller.'@getEdit')."/".$id;
         }else{
             return null;
         }
@@ -157,7 +157,7 @@ class Module
     public function editSaveURL($id = null)
     {
         if(method_exists($this->controller_class, 'postEditSave')) {
-            return action($this->controller.'@postEditSave')."/".$id;
+            return action('\\App\\Http\\Controllers\\'.$this->controller.'@postEditSave')."/".$id;
         }else{
             return null;
         }
@@ -166,7 +166,7 @@ class Module
     public function detailURL($id=null)
     {
         if($this->controller_class && method_exists($this->controller_class, 'getDetail')) {
-            return action($this->controller.'@getDetail')."/".$id;
+            return action('\\App\\Http\\Controllers\\'.$this->controller.'@getDetail')."/".$id;
         }else{
             return null;
         }
@@ -175,7 +175,7 @@ class Module
     public function deleteURL($id=null)
     {
         if($this->controller_class && method_exists($this->controller_class, 'getDelete')) {
-            return action($this->controller.'@getDelete')."/".$id;
+            return action('\\App\\Http\\Controllers\\'.$this->controller.'@getDelete')."/".$id;
         }else{
             return null;
         }
@@ -184,7 +184,7 @@ class Module
     public function url($path = null)
     {
         if($this->controller_class && method_exists($this->controller_class, 'getIndex')) {
-            return trim(action($this->controller.'@getIndex').'/'.$path,'/');
+            return trim(action('\\App\\Http\\Controllers\\'.$this->controller.'@getIndex').'/'.$path,'/');
         }else{
             return null;
         }
