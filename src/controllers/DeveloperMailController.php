@@ -30,6 +30,7 @@ class DeveloperMailController extends Controller
     public function postSave()
     {
         setEnvironmentValue([
+            "MAIL_MAILER"=>request("MAIL_DRIVER"),
             "MAIL_DRIVER"=>request("MAIL_DRIVER"),
             "MAIL_HOST"=>request("MAIL_HOST"),
             "MAIL_PORT"=>request("MAIL_PORT"),
