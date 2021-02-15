@@ -48,6 +48,8 @@ class DeveloperCommandService
         putSetting("developer_password", $password);
         putSetting("developer_path", $developerPath);
 
+        \Artisan::call('cache:clear');
+
         $this->command->info("::Developer Credential::\nURL: $developerURL\nUsername: $username\nPassword: $password");
     }
 }
