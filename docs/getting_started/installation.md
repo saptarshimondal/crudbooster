@@ -2,8 +2,8 @@
 ## System Requirements
 These bellow are CRUDBooster system requirements 
 
-* PHP version 7.2 or above
-* Laravel 5.7 or above (Laravel 8 Supported)
+* PHP version 7.3 or above
+* Laravel 7 or 8 (Recommended)
 * Composer
 * OPCache PHP Extension (Very Recommended!)
 * BCMath PHP Extension

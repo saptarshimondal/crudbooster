@@ -1,6 +1,5 @@
 - Getting Started
 	- [Introduction](/)
-	- [Installation](/getting_started/installation.md)
 	- [Developer Area](getting_started/developer_area.md)
 	- [Lifecycle Architecture](getting_started/lifecycle.md)
 - The Basic
