@@ -77,6 +77,7 @@ class DeveloperRolesController extends Controller
         ->leftjoin("cb_role_privileges",function($join) use ($id) {
             $join->on("cb_role_privileges.cb_menus_id","=","cb_menus.id")->where("cb_role_privileges.cb_roles_id", $id);
         })
+        ->where('cb_menus.type','module')
         ->orderBy("cb_menus.name","asc")
         ->select("cb_menus.*","can_browse","can_create","can_read","can_update","can_delete")
         ->get();

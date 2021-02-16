@@ -14,10 +14,12 @@ class ModifyUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('photo')->nullable();
-            $table->integer('cb_roles_id');
+            $table->unsignedBigInteger('cb_roles_id');
             $table->ipAddress("ip_address")->nullable();
             $table->string("user_agent")->nullable();
             $table->timestamp("login_at")->nullable();
+
+            $table->foreign('cb_roles_id')->references('id')->on('cb_roles')->onDelete('cascade');
         });
     }
 
@@ -29,6 +31,7 @@ class ModifyUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['cb_roles_id']);
             $table->dropColumn(["photo","cb_roles_id","ip_address","user_agent","login_at"]);
         });
     }
