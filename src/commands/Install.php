@@ -121,17 +121,17 @@ class Install extends Command
         $system_failed = 0;
         $laravel = app();
 
-        if ($laravel::VERSION >= 5.7) {
-            $this->info('Laravel Version (>= 5.7): [Good]');
+        if ($laravel->version() >= 6.0) {
+            $this->info('Laravel Version (>= 6.0): [Good]');
         } else {
-            $this->warn('Laravel Version (>= 5.7): [Bad]');
+            $this->warn('Laravel Version (>= 6.0): [Bad]');
             $system_failed++;
         }
 
-        if (version_compare(phpversion(), '7.2.0', '>=')) {
-            $this->info('PHP Version (>= 7.2.0): [Good]');
+        if (version_compare(phpversion(), '7.3.0', '>=')) {
+            $this->info('PHP Version (>= 7.3.0): [Good]');
         } else {
-            $this->warn('PHP Version (>= 7.2.0): [Bad] Yours: '.phpversion());
+            $this->warn('PHP Version (>= 7.3.0): [Bad] Yours: '.phpversion());
             $system_failed++;
         }
 
@@ -206,15 +206,14 @@ class Install extends Command
         (new DeveloperCommandService($this))->create();
 
         $this->info("--");
-        $this->info('Homepage : http://crudbooster.com');
-        $this->info('Github : https://github.com/crocodic-studio/crudbooster');
+        $this->info('Documentation : https://saptarshimondal.github.io/crudbooster');
+        $this->info('Github : https://github.com/saptarshimondal/crudbooster');
         $this->info('====================================================================');
         if ($success == true) {
             $this->info('------------------- :===: Completed !! :===: ------------------------');
         } else {
             $this->info('------------------- :===: Failed !!    :===: ------------------------');
         }
-        exit;
     }
 
 }
