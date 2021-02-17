@@ -66,6 +66,9 @@ class SidebarMenus
     private function checkPrivilege($roles_id,$menu) {
         if($roles_id) {
             $privilege = $this->rolePrivilege($roles_id, $menu->id);
+            if(is_null($privilege)){
+                return false;
+            }
             if($privilege && !$privilege->can_browse) {
                 return false;
             }

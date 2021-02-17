@@ -30,7 +30,7 @@ class DeveloperRolesController extends Controller
 
     public function getAdd() {
         $data = [];
-        $data['menus'] = DB::table("cb_menus")->orderBy("name","asc")->get();
+        $data['menus'] = DB::table("cb_menus")->where('type','module')->orderBy("name","asc")->get();
         return view($this->view.".add", $data);
     }
 

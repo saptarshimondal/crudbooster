@@ -33,6 +33,8 @@ class DeveloperMenusController extends Controller
         $data['form_title'] = "Add Menu";
         $data['form_url'] = route('DeveloperMenusControllerPostAddSave');
         $data['modules'] = DB::table("cb_modules")->orderBy("name","asc")->get();
+        $data['roles'] = DB::table('cb_roles')->get();
+
         return view($this->view.".form", $data);
     }
 
@@ -42,12 +44,19 @@ class DeveloperMenusController extends Controller
         $data['form_url'] = cb()->getDeveloperUrl("menus/edit-save/".$id);
         $data['modules'] = DB::table("cb_modules")->orderBy("name","asc")->get();
         $data['row'] = cb()->find("cb_menus", $id);
+        $data['roles'] = DB::table('cb_roles')->get();
+        $data['selected_roles'] = DB::table('cb_role_privileges')->select('cb_roles_id')->where(['cb_menus_id' => $id])->pluck('cb_roles_id')->toArray();
+
         return view($this->view.".form", $data);
     }
 
     public function postAddSave() {
         try {
-            cb()->validation(["name", "icon", "type"]);
+            cb()->validation([
+                "name", 
+                "icon", 
+                "type"
+            ]);
 
             $menu = [];
             $menu['name'] = request('name');
@@ -63,7 +72,22 @@ class DeveloperMenusController extends Controller
                 $menu['path'] = "javascript:void(0);";
             }
 
-            DB::table("cb_menus")->insert($menu);
+            $menu_id = DB::table("cb_menus")->insertGetId($menu);
+            
+            if(request('type') != 'module') {
+                $roles = request("roles");
+                foreach ($roles as $key => $role) {
+                    DB::table("cb_role_privileges")->insert([
+                        'cb_roles_id' => $role,
+                        'cb_menus_id' => $menu_id,
+                        'can_browse' => 1,
+                        'can_create' => 0,
+                        'can_read' => 0,
+                        'can_update' => 0,
+                        'can_delete' => 0
+                    ]);
+                }
+            }
 
             CacheHelper::forgetGroup("sidebar_menu");
 
@@ -76,7 +100,11 @@ class DeveloperMenusController extends Controller
 
     public function postEditSave($id) {
         try {
-            cb()->validation(["name", "icon", "type"]);
+            cb()->validation([
+                "name", 
+                "icon", 
+                "type"
+            ]);
 
             $menu = [];
             $menu['name'] = request('name');
@@ -92,6 +120,25 @@ class DeveloperMenusController extends Controller
                 $menu['path'] = "javascript:void(0);";
             }
             DB::table("cb_menus")->where("id",$id)->update($menu);
+
+            
+            if(request('type') != 'module') {
+                DB::table("cb_role_privileges")->where(['cb_menus_id' => $id])->delete();
+                $roles = request("roles");
+                foreach ($roles as $key => $role) {
+                
+                    DB::table("cb_role_privileges")->insert([
+                        'cb_roles_id' => $role,
+                        'cb_menus_id' => $id,
+                        'can_browse' => 1,
+                        'can_create' => 0,
+                        'can_read' => 0,
+                        'can_update' => 0,
+                        'can_delete' => 0
+                    ]);
+
+                }
+            }
 
             CacheHelper::forgetGroup("sidebar_menu");
 

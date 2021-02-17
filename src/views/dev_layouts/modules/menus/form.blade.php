@@ -16,6 +16,18 @@
                     {!! csrf_field() !!}
                     <div class="box-body">
                         <div class="form-group">
+                            <label for="">Roles</label>
+                            <select name="roles[]" class="form-control select2" data-placeholder="Select Roles" multiple>
+                                @foreach($roles as $role)
+                                    @if(in_array($role->id, $selected_roles))
+                                        <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                                    @else
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="">Name</label>
                             <input required type="text" placeholder="Type menu name here" value="{{ @$row->name }}" name="name" class="form-control">
                         </div>

@@ -54,7 +54,8 @@ class Install extends Command
              * Add some env for CB
              */
             setEnvironmentValue([
-                "APP_DEBUG"=> false
+                "APP_DEBUG"=> false,
+                "CACHE_DRIVER"=>"memcached"
             ]);
 
             /*
@@ -110,7 +111,7 @@ class Install extends Command
 #  / /___/ _, _/ /_/ / /_/ / /_/ / /_/ / /_/ (__  ) /_/  __/ /    
 #  \____/_/ |_|\____/_____/_____/\____/\____/____/\__/\___/_/     
 #                                                                                                                       
-			");
+            ");
         $this->info('--------- :===: Thanks for choosing CRUDBooster :==: ---------------');
         $this->info('====================================================================');
     }

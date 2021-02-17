@@ -87,7 +87,7 @@ class Module
             if($this->privilege->can_browse) return true;
             else return false;
         }else{
-            return true;
+            return false;
         }
     }
 
@@ -96,7 +96,7 @@ class Module
             if($this->privilege->can_create) return true;
             else return false;
         }else{
-            return true;
+            return false;
         }
     }
 
@@ -105,7 +105,7 @@ class Module
             if($this->privilege->can_read) return true;
             else return false;
         }else{
-            return true;
+            return false;
         }
     }
 
@@ -114,7 +114,7 @@ class Module
             if($this->privilege->can_update) return true;
             else return false;
         }else{
-            return true;
+            return false;
         }
     }
 
@@ -123,7 +123,7 @@ class Module
             if($this->privilege->can_delete) return true;
             else return false;
         }else{
-            return true;
+            return false;
         }
     }
 
