@@ -1,7 +1,5 @@
 # :rocket: CRUDBOOSTER - Laravel CRUD Generator
 
-[![Build Status](https://scrutinizer-ci.com/g/saptarshimondal/crudbooster/badges/build.png?b=master)](https://scrutinizer-ci.com/g/saptarshimondal/crudbooster/build-status/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/saptarshimondal/crudbooster/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/saptarshimondal/crudbooster/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/saptarshimondal/crudbooster/v)](//packagist.org/packages/saptarshimondal/crudbooster) 
 [![Total Downloads](https://poser.pugx.org/saptarshimondal/crudbooster/downloads)](//packagist.org/packages/saptarshimondal/crudbooster) 
 [![Latest Unstable Version](https://poser.pugx.org/saptarshimondal/crudbooster/v/unstable)](//packagist.org/packages/saptarshimondal/crudbooster) 
