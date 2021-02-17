@@ -15,6 +15,7 @@ These bellow are CRUDBooster system requirements
 * Laravel 7 or 8 (Recommended)
 * Composer
 * OPCache PHP Extension (Very Recommended!)
+* Memcached PHP Extension
 * BCMath PHP Extension
 * Ctype PHP Extension
 * JSON PHP Extension
