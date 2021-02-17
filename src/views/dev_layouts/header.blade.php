@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ cb()->getAdminUrl() }}" title='{{ cb()->getAppName()  }}' class="logo">
+    <a href="{{ cb()->getDeveloperUrl() }}" title='{{ cb()->getAppName()  }}' class="logo">
         <span class="logo-mini">{{ substr(cb()->getAppName(),0,2) }}</span>
         <span class="logo-lg">{{ cb()->getAppName() }}</span>
     </a>

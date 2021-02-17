@@ -7,8 +7,8 @@
             <img src="{{ cbAsset("images/logo_cb_blue.png") }}" alt="CRUDBooster">
             <div class="mt-20">
                 <p>
-                    <a target="_blank" href="http://crudbooster.com">Documentation</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-                    <a target="_blank" href="https://github.com/crocodic-studio/crudbooster">GitHub</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+                    <a target="_blank" href="https://saptarshimondal.github.io/crudbooster">Documentation</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+                    <a target="_blank" href="https://github.com/saptarshimondal/crudbooster">GitHub</a> &nbsp;&nbsp;&bull;&nbsp;&nbsp;
                     <a href="javascript:;" onclick='$("#modal-welcome").modal("show")'>Greeting</a>
                 </p>
             </div>
