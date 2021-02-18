@@ -112,12 +112,16 @@ class DeveloperMenusController extends Controller
             $menu['type'] = request('type');
             if(request('type') == 'module') {
                 $menu['cb_modules_id'] = request('cb_modules_id');
+                $menu['path'] = null;
             }elseif (request('type') == 'url') {
                 $menu['path'] = request('url_value');
+                $menu['cb_modules_id'] = null;
             }elseif (request('type') == 'path') {
                 $menu['path'] = request('path_value');
+                $menu['cb_modules_id'] = null;
             } elseif (request("type") == "empty") {
                 $menu['path'] = "javascript:void(0);";
+                $menu['cb_modules_id'] = null;
             }
             DB::table("cb_menus")->where("id",$id)->update($menu);
 
