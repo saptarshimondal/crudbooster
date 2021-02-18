@@ -19,13 +19,14 @@
                             <label for="">Roles</label>
                             <select name="roles[]" class="form-control select2" data-placeholder="Select Roles" multiple>
                                 @foreach($roles as $role)
-                                    @if(in_array($role->id, $selected_roles))
+                                    @if(in_array($role->id, $selected_roles ?? []))
                                         <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
                                     @else
                                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endif
                                 @endforeach
                             </select>
+                            <div class="help-block">If the type of menu is Module, roles will be selected automatically</div>
                         </div>
                         <div class="form-group">
                             <label for="">Name</label>
@@ -86,13 +87,13 @@
                                     })
 
                                     @if(isset($row) && $row->type=="module")
-                                    $("#module-input-wrap").show();
+                                        $("#module-input-wrap").show();
                                     @endif
                                     @if(isset($row) && $row->type=="path")
-                                    $("#path-value-wrapper").show();
+                                        $("#path-value-wrapper").show();
                                     @endif
                                     @if(isset($row) && $row->type=="url")
-                                    $("#url-value-wrapper").show();
+                                        $("#url-value-wrapper").show();
                                     @endif
                                 })
                             </script>
@@ -100,7 +101,7 @@
 
                         <div class="form-group" id="module-input-wrap" style="display: none">
                             <label for="">Module</label>
-                            <select {{ !isset($row)?"required":"" }} name="cb_modules_id" id="cb_modules_id" class="form-control">
+                            <select {{ (isset($row) && $row->type=="module")?"required":"" }} name="cb_modules_id" id="cb_modules_id" class="form-control">
                                 <option value="">** Select a Module</option>
                                 @foreach($modules as $module)
                                     <option {{ (isset($row) && $row->cb_modules_id==$module->id)?"selected":"" }} value="{{ $module->id }}">{{ $module->name }}</option>

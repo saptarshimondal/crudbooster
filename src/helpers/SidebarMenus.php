@@ -38,6 +38,11 @@ class SidebarMenus
             $model->setIcon($menu->icon);
             $model->setName($menu->name);
             $model->setBasepath(config('crudbooster.ADMIN_PATH').'/'.basename($model->getUrl()));
+        }elseif($menu->type == 'empty'){
+            $model->setUrl($menu->path);
+            $model->setPermalink(null);
+            $model->setIcon($menu->icon);
+            $model->setName($menu->name);
         }
 
         if(request()->is($model->getBasepath()."*")) {
