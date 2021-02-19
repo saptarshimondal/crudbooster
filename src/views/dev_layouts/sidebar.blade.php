@@ -51,10 +51,26 @@
                     </a>
                 </li>
 
-                <li class="{{ request()->is(cb()->getDeveloperPath("mail")."*")?"active":"" }}">
-                    <a href='{{ cb()->getDeveloperUrl("mail") }}'><i class='fa fa-mail-forward'></i>
-                        <span>Mail Configuration</span>
+                
+
+                <li class='treeview {{ request()->is(cb()->getDeveloperPath("mail")."*")?"active":"" }}'>
+                    <a href='javascript:void(0);'>
+                        <i class='fa fa-envelope'></i>
+                        <span>Email Setup</span>
+                        <i class="fa fa-angle-right pull-right"></i>
                     </a>
+                    <ul class="treeview-menu">
+                        <li class='{{ request()->is(cb()->getDeveloperPath("mail"))?"active":"" }}'>
+                            <a href='{{ cb()->getDeveloperUrl("mail") }}'>
+                            <i class='fa fa-cog'></i> <span>Configuration</span>
+                            </a>
+                        </li>
+                        <li class='{{ request()->is(cb()->getDeveloperPath("mail/templates"))?"active":"" }}'>
+                            <a href='{{ cb()->getDeveloperUrl("mail/templates") }}'>
+                            <i class='fa fa-envelope-o'></i> <span>Templates</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="{{ request()->is(cb()->getDeveloperPath("miscellaneous")."*")?"active":"" }}">

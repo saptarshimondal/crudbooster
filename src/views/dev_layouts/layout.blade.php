@@ -68,6 +68,9 @@
 
 @include('crudbooster::layouts.javascripts')
 
+<!-- AdminLTE App -->
+<script src="{{ cbAsset('adminlte/dist/js/adminlte.min.js') }}" type="text/javascript"></script>
+
 @stack('bottom')
 
 <script>

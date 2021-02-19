@@ -17,14 +17,9 @@ class DeveloperMailController extends Controller
 {
     private $view = "crudbooster::dev_layouts.modules.mail";
 
-    public function __construct()
-    {
-        view()->share(['page_title'=>'Mail Configuration']);
-    }
-
     public function getIndex() {
-        $data = [];
-        return view($this->view.".index",$data);
+        $data = ['page_title'=>'Mail Configuration'];
+        return view($this->view.".config",$data);
     }
 
     public function postSave()
@@ -40,5 +35,102 @@ class DeveloperMailController extends Controller
         ]);
 
         return cb()->redirectBack("Mail configuration has been updated!","success");
+    }
+
+    public function getTemplates(){
+        $data = ['page_title'=>'Mail Templates'];
+        $data['templates'] = cb()->findAll('cb_mail_templates');
+
+        return view($this->view.".templates",$data);
+    }
+
+    public function getAddTemplate(){
+        $data = [
+            'page_title'=>'Add New Template',
+            'form_title'=>'Add Data',
+            'cmd'=>'ADD'
+        ];
+        return view($this->view.".template_form",$data);
+    }
+
+    public function postAddTemplate(){
+
+        try {
+            cb()->validation([
+                "name" => "required|max:255", 
+                "slug" => "required|max:255|unique:cb_mail_templates", 
+                "content" => "required",
+                "from_name" => "required|max:255",
+                "from_email" => "required|max:255",
+                "subject" => "required|max:255"
+            ]);
+
+            DB::table('cb_mail_templates')->insert([
+                'name' => request('name'),
+                'slug' => request('slug'),
+                'content' => request('content'),
+                'from_name' => request("from_name"),
+                'from_email' => request("from_email"),
+                'cc' => request("cc"),
+                'bcc' => request("bcc"),
+                'subject' => request("subject")
+            ]);
+
+            return cb()->redirect(cb()->getDeveloperPath('mail/templates'), "Template added successfully!", "success");
+
+        } catch (CBValidationException $e) {
+            return cb()->redirectBack($e->getMessage());
+        }
+    }
+
+    public function getEditTemplate($id){
+        $data = [
+            'page_title'=>'Edit New Template',
+            'form_title'=>'Edit Data',
+            'cmd'=>'EDIT',
+            'template'=>cb()->find('cb_mail_templates', $id)
+        ];
+        return view($this->view.".template_form",$data);
+    }
+
+    public function postEditTemplate($id){
+
+        try {
+            cb()->validation([
+                "name" => "required|max:255", 
+                "slug" => "required|max:255|unique:cb_mail_templates,id,".$id, 
+                "content" => "required",
+                "from_name" => "required|max:255",
+                "from_email" => "required|max:255",
+                "subject" => "required|max:255"
+            ]);
+
+            cb()->update('cb_mail_templates', $id, [
+                'name' => request('name'),
+                'slug' => request('slug'),
+                'content' => request('content'),
+                'from_name' => request("from_name"),
+                'from_email' => request("from_email"),
+                'cc' => request("cc"),
+                'bcc' => request("bcc"),
+                'subject' => request("subject")
+            ]);
+
+            return cb()->redirect(cb()->getDeveloperPath('mail/templates'), "Template updated successfully!", "success");
+
+        } catch (CBValidationException $e) {
+            return cb()->redirectBack($e->getMessage());
+        }
+    }    
+
+
+    public function getDeleteTemplate($id){
+        try {
+            cb()->delete('cb_mail_templates', $id);
+            return cb()->redirect(cb()->getDeveloperPath('mail/templates'), "Template deleted successfully!", "success");
+
+        } catch (CBValidationException $e) {
+            return cb()->redirectBack($e->getMessage());
+        }
     }
 }
