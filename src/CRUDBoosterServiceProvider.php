@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use crocodicstudio\crudbooster\commands\Install;
+use Illuminate\Support\Facades\Schema;
 use App;
 
 class CRUDBoosterServiceProvider extends ServiceProvider
@@ -21,7 +22,6 @@ class CRUDBoosterServiceProvider extends ServiceProvider
 
     public function boot()
     {        
-
         // Register views
         $this->loadViewsFrom(__DIR__.'/views', 'crudbooster');
         $this->loadViewsFrom(__DIR__.'/types', 'types');
@@ -36,8 +36,11 @@ class CRUDBoosterServiceProvider extends ServiceProvider
         // Override Local FileSystem
         Config::set("filesystems.disks.local.root", cbConfig("LOCAL_FILESYSTEM_PATH", public_path("storage")));
                     
-        require __DIR__.'/validations/validation.php';        
-        require __DIR__.'/routes.php';
+        require __DIR__.'/validations/validation.php';
+        
+        if(Schema::hasTable('cb_roles')){
+            require __DIR__.'/routes.php';
+        }
 
         $this->registerTypeRoutes();
         $this->registerPlugin();
