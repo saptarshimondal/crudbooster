@@ -12,6 +12,10 @@ class TableModules extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('cb_modules');
+        Schema::enableForeignKeyConstraints();
+        
         Schema::create('cb_modules', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string('name');
@@ -29,6 +33,8 @@ class TableModules extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('cb_modules');
+        Schema::enableForeignKeyConstraints();
     }
 }

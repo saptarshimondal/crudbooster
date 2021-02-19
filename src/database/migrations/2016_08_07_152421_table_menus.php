@@ -12,6 +12,10 @@ class TableMenus extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('cb_menus');
+        Schema::enableForeignKeyConstraints();
+        
         Schema::create('cb_menus', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string('name');
@@ -34,10 +38,8 @@ class TableMenus extends Migration
      */
     public function down()
     {
-        Schema::table('cb_menus', function (Blueprint $table) {
-            $table->dropForeign(['cb_modules_id']);
-            $table->dropForeign(['parent_cb_menus_id']);
-        });
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('cb_menus');
+        Schema::enableForeignKeyConstraints();
     }
 }

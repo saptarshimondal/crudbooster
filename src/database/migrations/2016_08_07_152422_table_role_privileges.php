@@ -12,6 +12,10 @@ class TableRolePrivileges extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('cb_role_privileges');
+        Schema::enableForeignKeyConstraints();
+
         Schema::create('cb_role_privileges', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->unsignedBigInteger("cb_roles_id");
@@ -34,10 +38,8 @@ class TableRolePrivileges extends Migration
      */
     public function down()
     {
-        Schema::table('cb_role_privileges', function (Blueprint $table) {
-            $table->dropForeign(['cb_roles_id']);
-            $table->dropForeign(['cb_menus_id']);
-        });
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('cb_role_privileges');
+        Schema::enableForeignKeyConstraints();
     }
 }

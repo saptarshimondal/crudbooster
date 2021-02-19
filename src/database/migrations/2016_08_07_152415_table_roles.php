@@ -12,6 +12,10 @@ class TableRoles extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('cb_roles');
+        Schema::enableForeignKeyConstraints();
+        
         Schema::create('cb_roles', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string('name');
@@ -25,6 +29,8 @@ class TableRoles extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('cb_roles');
+        Schema::enableForeignKeyConstraints();
     }
 }
